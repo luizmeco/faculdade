@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="servidor/formulario.php">
+        Nome:
+        <input type="text" name="nome" id="nome">
+        Pessoa Física:
+        <input type="radio" name="tipoPessoa" id="pessoaFisica" onchange="verificar()" checked>
+        Pessoa Jurídica:
+        <input type="radio" name="tipoPessoa" id="pessoaJuridica" onchange="verificar()" >
+        <br>
+        <br>
+        CPF:
+        <input type="text" name="cpf" id="cpf">
+        CNPJ:
+        <input type="text" name="cnpj" id="cnpj" disabled>
+    </form>
+    <script>
+        function verificar(){
+            var pessoaJuridica = document.getElementById("pessoaJuridica")
+
+            var cpf = document.getElementById("cpf")
+            var cnpj = document.getElementById("cnpj")
+
+            if (pessoaJuridica.checked) {
+                cpf.setAttribute('disabled', 'disabled')
+                cnpj.removeAttribute('disabled')
+            }
+            else {
+                cnpj.setAttribute('disabled', 'disabled')
+                cpf.removeAttribute('disabled')
+            }        
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Senha:
+    <input id="senha" type="text">
+    <br>
+    <br>
+    <button id="btn" onclick="gerar()">Gerar Senha Aleatória</button>
+
+    <script>
+
+        function gerar() {
+
+            var inputSenha = document.getElementById("senha")
+            var caracteres = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%"
+            var senhaGerada = ''
+            
+            
+
+            for (let i = 0; i <= 8; i++){
+                var numeroAl = Math.floor(Math.random()*caracteres.length)
+                senhaGerada += caracteres[numeroAl]
+                console.log(senhaGerada)
+            }
+
+            inputSenha.value = senhaGerada
+        }
+        
+    </script>
+  </body>
+</html>

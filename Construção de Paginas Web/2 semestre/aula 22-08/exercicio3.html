@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=], initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio id="audio" src="./musica.mp3" play()></audio>
+    <button id="play" onclick="play()">PLAY</button>
+    <button id="pause" onclick="pause()">PAUSE</button>
+</body>
+<script>
+    var audio = document.getElementById("audio")
+
+    function play(){
+        audio.play()
+    }
+    function pause(){
+        audio.pause()
+    }
+</script>
+</html>

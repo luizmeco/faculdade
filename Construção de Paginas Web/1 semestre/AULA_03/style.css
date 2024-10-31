@@ -1,0 +1,28 @@
+*{
+    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-style: none;
+    
+}
+body {
+    color: rgb(92, 171, 255);
+    background-color: rgb(78, 78, 78);
+    font-size: 30px;
+}
+p {
+    color: white;
+}
+
+input {
+    width: 200px;
+    font-size: 30px;
+    background-color: white;
+}
+input:hover {
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+    transition: all 0.5s;
+}

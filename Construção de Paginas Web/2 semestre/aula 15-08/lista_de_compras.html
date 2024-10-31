@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script>
+      var itens = [];
+
+      function atualizar() {
+          var divLista = document.getElementById("listaCompras"); //obtem o div da lista
+          divLista.innerHTML = "";
+
+          itens.forEach(function(item) {
+            var p = document.createElement("p")
+          p.textContent = item
+          divLista.appendChild(p)
+          }
+
+      )}
+
+      function adicionar() {
+          var item = prompt("Insira o item que deseja adicionar a lista")
+          itens.push(item)
+          atualizar()
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="adicionar()">Adicionar à lista de compras</button>
+    <div id="listaCompras"></div>
+  </body>
+</html>

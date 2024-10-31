@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .none {
+        display: none;
+      }
+    </style>
+    <script>
+      var itens = [];
+
+      function adicionar() {
+        var item = prompt("Insira o item que deseja adicionar a lista");
+        itens.push(item);
+        var divLista = document.getElementById("listaCompras"); //obtem o div da lista
+        divLista.innerHTML = "";
+
+        itens.forEach((item) => {
+          var p = document.createElement("p");
+          var btn = document.createElement("button");
+          btn.addEventListener('click', (e) =>{
+            p.classList.add("none")
+            btn.classList.add("none")
+          })
+          btn.textContent = "excluir"
+          btn.style.color = "red"
+          p.textContent = item;
+          divLista.appendChild(p);
+          divLista.appendChild(btn);
+        });
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="adicionar()">Adicionar à lista de compras</button>
+    <div id="listaCompras"></div>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+    function funcaoAssincronaComCallback(callback) {
+        console.log("Início da função principal");
+        setTimeout(function () {
+            console.log("Tarefa assíncrona concluída após 2 segundos");
+            callback();
+        }, 2000);
+        console.log("Final da função");
+    }
+
+    function callbackFinal() {
+        console.log("Função callback executada após a tarefa assíncrona");
+    }
+
+    funcaoAssincronaComCallback(callbackFinal);
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

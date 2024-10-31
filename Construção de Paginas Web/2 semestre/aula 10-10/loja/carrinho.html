@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Carrinho</title>
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #FFF;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+ 
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Carrinho</h1>
+            <a class="btn btn-secondary" href="index.html">Voltar</a>
+        </div>
+    </header>
+ 
+    <main class="container mt-4">
+        <h2>Produtos no carrinho</h2>
+        <div class="row" id="lista-produtos">
+            <!-- Os produtos do carrinho serão carregados aqui -->
+        </div>
+        <div class="text-end">
+            <h4 id="preco-total">Total: R$ 0.00</h4>
+        </div>
+    </main>
+ 
+    <footer class="text-center py-4">
+        <p>&copy; 2024 Mercado Livre - Todos os direitos reservados</p>
+    </footer>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+const chaveLS = "cart"
+        const carrinho = JSON.parse(localStorage.getItem(chaveLS)) || []
+
+        console.log(carrinho)
+
+
+      function mostrarProdutos() {
+        
+
+        const listaProdutosHTML = document.getElementById("lista-produtos");
+        listaProdutosHTML.innerHTML = "";
+
+        var total = 0
+
+        carrinho.forEach((produto, index) => {
+        total += produto.price
+          const carProdutoHTML = `
+                <div class="col-md-4">
+                    <div class="card product-card">
+                        <img src="${produto.image}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">${produto.title}</h5>
+                            <p class="card-text">
+                                ${produto.description}
+                            </p>
+                            <span class="badge bg-success">
+                                ${produto.price.toFixed(2)}
+                            </span>
+                            <button class="btn btn-danger" onclick="removerCarrinho(${
+                              index
+                            })">
+                                Remover do Carrinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+          listaProdutosHTML.innerHTML += carProdutoHTML;
+        });
+        document.getElementById('preco-total').innerText= `Total R$ ${total.toFixed(2)}`     
+    }
+
+    function removerCarrinho(index){
+        carrinho.splice(index,1)
+        localStorage.setItem(chaveLS, JSON.stringify(carrinho))
+        mostrarProdutos()
+    }
+
+    window.onload = mostrarProdutos
+    </script>
+</body>
+</html>
+ APIs para testes

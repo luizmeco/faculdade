@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>atividade 1</title>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <h1>Minha primeira página com JQuery</h1>
+    <p id="text">Olá</p>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#text").text("Foi alterado por Jquery");
+    });
+  </script>
+  <body>
+    <h1>Minha segunda página com JQuery</h1>
+    <button id="btn">Adicionar Item</button>
+    <ul id="lista"></ul>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#btn").click(function () {
+        var ul = $('<ul id="lista"></ul>');
+        var novoItem = $("<li>Novo Item</li>");
+
+        $("body").append(ul);
+        $("#lista").append(novoItem);
+      });
+    });
+  </script>
+  <body>
+    <h1>Minha terceira página com JQuery</h1>
+    <input id="input" disabled type="text" />
+    <button id="btn">habilitar</button>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#btn").click(function () {
+        var statusInput = $("#input").attr("disabled");
+        if (statusInput) {
+          $("#input").removeAttr("disabled");
+        } else {
+          $("#input").attr("disabled", "disabled");
+        }
+      });
+    });
+  </script>
+  <body>
+    <h1>Minha quarta página com JQuery</h1>
+    <button id="btn-vermelho">Vermelho</button>
+    <button id="btn-verde">Verde</button>
+    <button id="btn-azul">Azul</button>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#btn-vermelho").click(function () {
+        $("body").css("background-color", "red");
+      });
+      $("#btn-verde").click(function () {
+        $("body").css("background-color", "green");
+      });
+      $("#btn-azul").click(function () {
+        $("body").css("background-color", "blue");
+      });
+    });
+  </script>
+  <body>
+    <h1>Minha quinta página com JQuery</h1>
+    <textarea id="text" cols="30" rows="10"></textarea>
+    <div id="resultado"></div>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#text").on("input", function () {
+        var text = $(this).val();
+        $("#resultado").text(text);
+      });
+    });
+  </script>
+  <body>
+    <div id="minhaDiv">
+      <h1>Olá</h1>
+    </div>
+    <button id="btn">Alternar</button>
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#btn").click(function () {
+        $("#minhaDiv").fadeToggle();
+      });
+    });
+  </script>
+</html>

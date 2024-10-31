@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="servidor/formulario.php" method="post">
+        <h1>
+            Formlário de Login
+        </h1>
+        Nome:
+        <input name="nome" id="nome">
+
+        Senha:
+        <input name="senha" id="senha" type="password">
+        <button type="submit">entrar</button>
+    </form>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event){
+            //para evento padrão
+
+            event.preventDefault()
+            
+            
+            //coleta de dados
+
+            const nome = document.getElementById("nome").value
+            const senha = document.getElementById("senha").value
+
+            if(nome != "admin" || senha != "123"){
+                alert("Nome ou senha erradoas")
+            }
+            else {
+                alert("Usuário Logado")
+            }
+        })
+    </script>
+</body>
+</html>
