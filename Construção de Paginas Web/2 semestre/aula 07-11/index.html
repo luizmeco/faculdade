@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            
+            align-items: center;
+        }
+
+        
+
+        .board {
+            width: 300px;
+            min-height: 200px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .board h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .tarefa{
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px 0;
+            text-align: center;
+            cursor: move;
+        }
+
+        .tarefa_concluida {          
+            background-color: #65dd97;
+            border-radius: 5px;
+            cursor: move;
+            text-align: center;
+            position: relative;
+        }
+
+        .tarefa_concluida::after {
+            content: "✔️";
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .drag-over {
+            border: 2px dashed #007bff;
+            background-color: #e6f7ff;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Lista de tarefas</h1>
+<form id="formulario">
+    <input type="text" id="input_tarefa" placeholder="Escreva uma nova tarefa" required>
+    <br>
+    <button type="submit">Adicionar à lista de tarefas</button>
+</form>
+
+<div class="board" id="tarefasAtivas">
+    <h3>Tarefas Ativas</h3>
+</div>
+
+<div class="board" id="tarefasCompletas">
+    <h3>Tarefas Concluídas</h3>
+</div>
+
+<script>
+    const tarefasAtivas = document.getElementById("tarefasAtivas");
+    const tarefasCompletas = document.getElementById("tarefasCompletas");
+    const formulario = document.getElementById("formulario");
+    const input_tarefa = document.getElementById("input_tarefa");
+
+    // Adiciona nova tarefa ao quadro de tarefas ativas
+    formulario.addEventListener("submit", (event) => {
+        event.preventDefault();
+        
+        var textoTarefa = input_tarefa.value;
+        
+        if (textoTarefa) {
+            const novaTarefa = criarTarefaHTML(textoTarefa);
+            tarefasAtivas.appendChild(novaTarefa);
+            input_tarefa.value = ""; 
+        }
+    });
+
+    // Função para criar um elemento de tarefa
+    function criarTarefaHTML(text) {
+        const task = document.createElement("div");
+        task.classList.add("tarefa");
+        task.setAttribute("draggable", "true");
+        task.textContent = text;
+
+        // Eventos de drag and drop
+        task.addEventListener("dragstart", dragStart);
+        task.addEventListener("dragend", dragEnd);
+
+        return task;
+    }
+
+    var draggedItem = null;
+
+    function dragStart(event) {
+        draggedItem = this;
+        setTimeout(() => this.style.display = "none", 0);
+    }
+
+    function dragEnd(event) {
+        setTimeout(() => this.style.display = "block", 0);
+        draggedItem = null;
+    }
+
+    function handleDragOver(event) {
+        event.preventDefault();
+    }
+
+    function handleDragEnter(event) {
+        event.preventDefault();
+        this.classList.add("drag-over");
+    }
+
+    function handleDragLeave(event) {
+        this.classList.remove("drag-over");
+    }
+
+    function handleDrop(event) {
+        this.classList.remove("drag-over");
+        if (draggedItem) {
+            this.appendChild(draggedItem);
+            if (this === tarefasCompletas) {
+                draggedItem.classList.add("tarefa_concluida");
+            } else {
+                draggedItem.classList.remove("tarefa_concluida");
+            }
+        }
+    }
+
+    // Configura eventos de drag and drop nos boards
+    [tarefasAtivas, tarefasCompletas].forEach(board => {
+        console.log(board)
+        board.addEventListener("dragover", handleDragOver);
+        board.addEventListener("dragenter", handleDragEnter);
+        board.addEventListener("dragleave", handleDragLeave);
+        board.addEventListener("drop", handleDrop);
+    });
+</script>
+
+</body>
+</html>

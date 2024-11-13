@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .board {
+            width: 300px;
+            min-height: 200px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+        .item{
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 5px 0;
+            text-align: center;
+            cursor: move;
+        }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Assistente de Pedidos</h1>
+      <h2>Total do pedido: <span>500</span></h2>
+    </div>
+    <div>
+        <div class="board" id="pratos">
+            <h3>Pratos</h3>
+            <div class="item" draggable="true">
+                <span>Lasanha Bolonhesa R$ <span class="preco">30.00</span></span>
+            </div>
+            <div class="item" draggable="true">
+                <span>Frango Grelhado R$ <span class="preco">25.00</span></span>
+            </div>
+            <div class="item" draggable="true">
+                <span>Filé Parmegiana R$ <span class="preco">35.00</span></span>
+            </div>
+        </div>
+        
+        <div class="board" id="bebidas">
+            <h3>Bebidas</h3>
+            <div class="item" draggable="true">
+                <span>Refrigerante R$ <span class="preco">6.00</span></span>
+            </div>
+            <div class="item" draggable="true">
+                <span>Água Mineral R$ <span class="preco">3.50</span></span>
+            </div>
+            <div class="item" draggable="true">
+                <span>Suco de Laranja R$ <span class="preco">8.00</span></span>
+            </div>
+        </div>
+
+        <div class="board">
+            <h3>Pedido Final</h3>
+        </div>
+    </div>
+  </body>
+  <script defer>
+    const pratos = document.getElementById('pratos')
+    const bebidas = document.getElementById('bebidas')
+    [pratos, bebidas].forEach(board => {
+        board.addEventListener("dragover", handleDragOver);
+        board.addEventListener("dragenter", handleDragEnter);
+        board.addEventListener("dragleave", handleDragLeave);
+        board.addEventListener("drop", handleDrop);
+    });
+  </script>
+</html>
