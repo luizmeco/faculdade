@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number" id="num1">
+    <select id="operacoes" name="operacoes">
+        <option value="adicao">+</option>
+        <option value="subtracao">-</option>
+        <option value="multiplicacao">*</option>
+        <option value="divisao">/</option>
+      </select>
+    <input type="number" id="num2"><br>
+    <h2>Resultado:</h2>
+    <h2 id="resultado"></h2>
+    <button>
+        Calcular
+    </button>
+</body>
+<script>
+    var num1 = document.querySelector('#num1')
+    var num2 = document.querySelector('#num2')
+    var operacao = document.querySelector('#operacoes')
+    var btn = document.querySelector('button')
+    var span = document.querySelector('#resultado')
+
+    btn.addEventListener('click', () => {
+        if(operacao.value == 'adicao'){
+            span.textContent = Number(num1.value) + Number(num2.value)
+        }else if(operacao.value == 'subtracao'){
+            span.textContent = Number(num1.value) - Number(num2.value)
+        }else if(operacao.value == 'multiplicacao'){
+            span.textContent = Number(num1.value) * Number(num2.value)
+        }else if(operacao.value == 'divisao'){
+            span.textContent = Number(num1.value) / Number(num2.value)
+        }
+    })
+</script>
+</html>

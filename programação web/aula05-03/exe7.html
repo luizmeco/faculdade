@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Modo Claro/Escuro</title>
+    <link id="themeStylesheet" rel="stylesheet" href="light.css">
+</head>
+<body>
+
+    <button onclick="toggleTheme()">Alternar Modo</button>
+    <p>Exemplo de texto na página.</p>
+
+    <script>
+        function toggleTheme() {
+            const themeLink = document.getElementById("themeStylesheet");
+            const currentTheme = themeLink.getAttribute("href");
+
+            // Alterna entre os arquivos de estilo
+            if (currentTheme === "light.css") {
+                themeLink.setAttribute("href", "dark.css");
+                localStorage.setItem("theme", "dark.css"); // Salva no Local Storage
+            } else {
+                themeLink.setAttribute("href", "light.css");
+                localStorage.setItem("theme", "light.css");
+            }
+        }
+
+        // Mantém o tema ao recarregar a página
+        window.onload = function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme) {
+                document.getElementById("themeStylesheet").setAttribute("href", savedTheme);
+            }
+        };
+    </script>
+
+</body>
+</html>

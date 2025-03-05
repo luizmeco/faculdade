@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Adicionar Itens à Lista</title>
+</head>
+<body>
+<input type="text" id="item-input" placeholder="Digite um item">
+<button onclick="adicionarItem()">Adicionar</button>
+
+<ul id="lista"></ul>
+
+</body>
+<script>
+    function adicionarItem() {
+        var item = document.getElementById("item-input").value;
+        var ul = document.getElementById("lista");
+        var li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+        document.getElementById("item-input").value = "";
+    }
+</script>
+</html>

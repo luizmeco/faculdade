@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adicionar Itens à Lista</title>
+  </head>
+  <body>
+    <button onclick="adicionarItem()">Adicionar Aleatório</button>
+    <button onclick="excluirUltimoItem()">Excluir Ultimo Item</button>
+
+    <ul id="lista"></ul>
+  </body>
+  <script>   
+    const termosBase = ["Processador", "Memória", "Placa-mãe", "Disco Rígido", "Fonte"];
+    const termosComMaisChance = ["Scanner", "Chipset", "BIOS"];
+
+    function escolherTermoAleatorio() {
+            // Definição de pesos: base (1x) e mais frequentes (2x)
+            const termos = [...termosBase, ...termosComMaisChance, ...termosComMaisChance];
+            return termos[Math.floor(Math.random() * termos.length)];
+        }
+    
+    function adicionarItem() {
+        const item = escolherTermoAleatorio();
+        const ul = document.getElementById("lista");
+        const li = document.createElement("li");
+        li.textContent = item;
+        ul.appendChild(li);
+    }
+    
+    function excluirUltimoItem() {
+        const ul = document.getElementById("lista");
+        const ultimoItem = ul.lastElementChild;
+        if (ultimoItem) {
+            ul.removeChild(ultimoItem);
+        }
+    }
+    
+  </script>
+</html>

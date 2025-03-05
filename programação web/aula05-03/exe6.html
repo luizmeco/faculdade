@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aumentar/Diminuir Fonte em Todo o Texto</title>
+  </head>
+  <body>
+    <p>Texto de exemplo 1</p>
+    <p>Texto de exemplo 2</p>
+    <button onclick="alterarFonte(2)">Aumentar Fonte</button>
+    <button onclick="alterarFonte(-2)">Diminuir Fonte</button>
+  </body>
+  <script>
+    function alterarFonte(delta) {
+      let elementos = document.querySelectorAll("p");
+      for (let i = 0; i < elementos.length; i++) {
+        let tamanhoAtual = parseFloat(window.getComputedStyle(elementos[i]).fontSize);
+        let novoTamanho = tamanhoAtual + delta + "px";
+        elementos[i].style.fontSize = novoTamanho;
+      }
+    }
+  </script>
+</html>

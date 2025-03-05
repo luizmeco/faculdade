@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>Você apertou <span>0</span> vezes</h3>
+    <button>
+        Adicionar
+    </button>
+</body>
+<script>
+    var span = document.querySelector('span')
+    var btn = document.querySelector('button')
+
+    btn.addEventListener('click', () => {
+        span.innerHTML = parseInt(span.innerHTML) + 1
+    })
+</script>
+</html>
